@@ -1,4 +1,0 @@
-INDEX VERSION 1.126+/Users/alexanderbaron/Documents/workspace/Homeworks5/.metadata/.plugins/org.eclipse.jdt.core
-3124604304.index
-3443170566.index
-1412680892.index
