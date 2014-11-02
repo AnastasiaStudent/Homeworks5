@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
-import java.util.Scanner;
 
 /**
  * Created by jm on 10/10/2014.
@@ -23,16 +22,15 @@ public class Consumer {
         factory.setUri("amqp://test:test@b40.cz:5672");
         Connection connection = factory.newConnection();
         Channel channel = connection.createChannel();
-        channel.queueDeclare(Sender.varNameQue, false, false, false, null);
-        Scanner sc = new Scanner(System.in);
+        channel.queueBind(Sender.ExchangevarNameQue, "chat", "");
 
-
-        QueueingConsumer r = new QueueingConsumer(channel);
-        channel.basicConsume(Sender.varNameQue, true, r);
+        QueueingConsumer qr = new QueueingConsumer(channel);
+        channel.basicConsume(Sender.ExchangevarNameQue, true, qr);
         while (true) {
-            QueueingConsumer.Delivery delivery = r.nextDelivery();
+            QueueingConsumer.Delivery delivery = qr.nextDelivery();
             String delMsg = new String(delivery.getBody());
-            System.out.println(delMsg);
+            String routingKey = delivery.getEnvelope().getRoutingKey();
+            System.out.println(" [x] Received '" + routingKey + "':'" + delMsg + "'");
         }
 
     }

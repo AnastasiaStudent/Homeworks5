@@ -44,10 +44,10 @@ public class ChatServerBind {
         channel.queueDeclare("newQeueRMIJAVA", false, false, false, null);
 
         while (true) {
-            String msg = scan.nextLine().trim();
-            if (chse.getName() != null) {
+            String msg = scan.nextLine();
+            if ((chse.getName() != null) && (msg != null)) {
                 ChatInterface client = chse.getClient();
-                msg = "[" + chse.getName() + "] " + msg;
+                System.out.println(msg = "[" + chse.getName() + "] " + msg);
                 client.postMessage(msg);
             }
         }

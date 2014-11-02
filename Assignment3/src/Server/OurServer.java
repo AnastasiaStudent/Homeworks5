@@ -18,11 +18,12 @@ public class OurServer {
         System.out.println("ServerSocket has been established " + " : " + ser.getLocalPort());
         ExecutorService ex = Executors.newFixedThreadPool(10);
 
-
         while (true) {
             Socket soc = ser.accept();
             System.out.println("Socket Connection has been created" + soc.getLocalAddress() + " <: " + soc.getPort());
-            ex.execute(new ThreadPoolServer(soc));
+
+            ex.submit(new ThreadPoolServer(soc));
+
         }
     }
 }

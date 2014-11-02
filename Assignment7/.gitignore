@@ -21,3 +21,4 @@ bin/
 .settings/
 .project
 .classpath
+.metadata

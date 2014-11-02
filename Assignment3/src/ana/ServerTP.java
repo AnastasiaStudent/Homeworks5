@@ -61,14 +61,14 @@ public class ServerTP {
                 System.out.println("Verbunden mit "
                     + socket.getInetAddress().getHostName() + ".");
           /*
-    			 * Als erstes wird dem Client mitgeteilt, dass er nun verbunden ist.
+           * Als erstes wird dem Client mitgeteilt, dass er nun verbunden ist.
     			 */
 
                 nachricht =
                     "Ist, Ihrer Meinung nach, die Aufgabe3 kompliziert? \nBitte 'ja','nein' oder 'sonstiges' fuer Enthaltung eingeben.";
                 out.writeUTF(nachricht);// Antwort senden
                 out.flush();
-                System.out.println("Server: "    + nachricht);
+                System.out.println("Server: " + nachricht);
                 while (true) {
                     nachricht = in.readUTF();// // auf die Antwort/Anfrage warten
                     System.out.println(myconnection.getInetAddress().getHostName() + ": "

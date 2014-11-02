@@ -14,24 +14,28 @@ import java.util.Scanner;
  * Created by jm on 10/10/2014.
  */
 public class Sender {
-    public static final String varNameQue = "MyNewQsdfdfuest";
+    public static final String ExchangevarNameQue = "Aufgabe5Chat";
 
-    public static void main(String[] args)
-        throws IOException, NoSuchAlgorithmException, KeyManagementException, URISyntaxException,
-        InterruptedException {
+    public static void main(String[] args) throws IOException, NoSuchAlgorithmException,
+        KeyManagementException, URISyntaxException, InterruptedException {
+
+        Scanner sc = new Scanner(System.in);
+
         ConnectionFactory factory = new ConnectionFactory();
         factory.setUri("amqp://test:test@b40.cz:5672");
         Connection connection = factory.newConnection();
         Channel channel = connection.createChannel();
-        channel.queueDeclare(varNameQue, false, false, false, null);
-        Scanner sc = new Scanner(System.in);
-        //String yourmsg = sc.next().trim();
+        channel.exchangeDeclare("chat", "fanout");
+        channel.queueDeclare(ExchangevarNameQue, false, false, false, null);
 
 
         while (true) {
-            String yourmsg = sc.next().trim();
-            channel.basicPublish("", varNameQue, null, yourmsg.getBytes());
+            String yourmsg = sc.next();
+            channel.basicPublish("chat", "", null, yourmsg.getBytes());
         }
+//        channel.close();
+//        connection.close();
+
 
     }
 

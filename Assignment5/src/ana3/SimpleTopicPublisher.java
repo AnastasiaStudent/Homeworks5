@@ -1,35 +1,38 @@
-package ana2;
+package ana3;
+
 import javax.jms.*;
-import javax.naming.*;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 
 public class SimpleTopicPublisher {
 
     /**
      * Main method.
      *
-     * @param args     the topic used by the example and,
-     *                 optionally, the number of messages to send
+     * @param args the topic used by the example and,
+     *             optionally, the number of messages to send
      */
     public static void main(String[] args) {
-        String                  topicName = null;
-        Context                 jndiContext = null;
-        TopicConnectionFactory  topicConnectionFactory = null;
-        TopicConnection         topicConnection = null;
-        TopicSession            topicSession = null;
-        Topic                   topic = null;
-        TopicPublisher          topicPublisher = null;
-        TextMessage             message = null;
-        final int               NUM_MSGS;
-        
-        if ( (args.length < 1) || (args.length > 2) ) {
+        String topicName;
+        Context jndiContext = null;
+        TopicConnectionFactory topicConnectionFactory = null;
+        TopicConnection topicConnection = null;
+        TopicSession topicSession;
+        Topic topic = null;
+        TopicPublisher topicPublisher = null;
+        TextMessage message;
+        final int NUM_MSGS;
+
+        if ((args.length < 1) || (args.length > 2)) {
             System.out.println("Usage: java " +
                 "SimpleTopicPublisher <topic-name> " +
                 "[<number-of-messages>]");
             System.exit(1);
-        } 
+        }
         topicName = new String(args[0]);
         System.out.println("Topic name is " + topicName);
-        if (args.length == 2){
+        if (args.length == 2) {
             NUM_MSGS = (new Integer(args[1])).intValue();
         } else {
             NUM_MSGS = 1;
@@ -72,27 +75,28 @@ public class SimpleTopicPublisher {
          * Finally, close connection.
          */
         try {
-            topicConnection = 
+            topicConnection =
                 topicConnectionFactory.createTopicConnection();
-            topicSession = 
-                topicConnection.createTopicSession(false, 
+            topicSession =
+                topicConnection.createTopicSession(false,
                     Session.AUTO_ACKNOWLEDGE);
             topicPublisher = topicSession.createPublisher(topic);
             message = topicSession.createTextMessage();
             for (int i = 0; i < NUM_MSGS; i++) {
                 message.setText("This is message " + (i + 1));
-                System.out.println("Publishing message: " + 
+                System.out.println("Publishing message: " +
                     message.getText());
                 topicPublisher.publish(message);
             }
         } catch (JMSException e) {
-            System.out.println("Exception occurred: " + 
+            System.out.println("Exception occurred: " +
                 e.toString());
         } finally {
             if (topicConnection != null) {
                 try {
                     topicConnection.close();
-                } catch (JMSException e) {}
+                } catch (JMSException e) {
+                }
             }
         }
     }

@@ -8,7 +8,7 @@ import java.rmi.server.UnicastRemoteObject;
  */
 public class ChatServer  extends UnicastRemoteObject implements ChatInterface {
     String msg;
-    ChatInterface client = null;
+    ChatInterface client;
 
     public ChatServer(String name) throws RemoteException {
         this.msg = name;

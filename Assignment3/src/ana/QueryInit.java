@@ -8,29 +8,19 @@ public class QueryInit implements Serializable {
 
     String filename = "umfrageErgebnisse.txt";
 
-    FileOutputStream fos = null;
-    ObjectOutputStream oos = null;
-    FileInputStream fis = null;
-    ObjectInputStream ois = null;
-
     public synchronized void speichern(String antwort) {
-        try {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename))) {
             this.sds = (SDS) SDSliefern();
-            fos = new FileOutputStream(filename);
-            oos = new ObjectOutputStream(fos);
+
             if (antwort.equals("ja")) {
                 this.sds.ja++;
-            }
-            if (antwort.equals("nein")) {
+            } else if (antwort.equals("nein")) {
                 this.sds.nein++;
-            }
-            if (antwort.equals("sonstiges")) {
+            } else if (antwort.equals("sonstiges")) {
                 this.sds.sonstiges++;
             }
             oos.writeObject(this.sds);
             oos.flush();
-            oos.close();
-            fos.close();
             System.out.println("Datei gespeichert");
         } catch (FileNotFoundException e) {
 
@@ -42,35 +32,20 @@ public class QueryInit implements Serializable {
 
     private SDS SDSliefern() {
 
-        try {
-            fis = new FileInputStream(filename);
-            ois = new ObjectInputStream(fis);
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filename))) {
             this.sds = (SDS) ois.readObject();
-
-        } catch (EOFException e) {
-
         } catch (FileNotFoundException e) {
-
         } catch (IOException e) {
-
         } catch (ClassNotFoundException e) {
-
+        } catch (NullPointerException e) {
+            System.out.println("Erste Anfrage!");
         }
+
         if (this.sds == null) {
             this.sds.ja = 0;
             this.sds.nein = 0;
             this.sds.sonstiges = 0;
         }
-        try {
-            ois.close();
-            fis.close();
-        } catch (IOException e) {
-
-        } catch (NullPointerException e) {
-            System.out.println("Erste Anfrage!");
-        }
-
-
         return sds;
     }
 
