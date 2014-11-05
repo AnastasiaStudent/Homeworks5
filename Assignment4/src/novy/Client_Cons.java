@@ -6,7 +6,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
 /**
- * Created by jm on 10/19/2014.
+ * WHere client consumes Mensch
  */
 public class Client_Cons implements Runnable {
     Server sr;

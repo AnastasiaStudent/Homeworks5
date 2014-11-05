@@ -9,11 +9,13 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * Created by jm on 10/28/2014.
+ *
  */
 public class Main {
     public static void main(String[] args) throws InterruptedException, RemoteException, MalformedURLException, NotBoundException {
+        // create Produkt where are going to consume, produce
         Mensch ms = new Mensch(5, "Prvni");
+        //Server connection
         Server server = new Server();
 
         Registry registry = LocateRegistry.createRegistry(Registry.REGISTRY_PORT);
@@ -22,7 +24,9 @@ public class Main {
         System.out.println("Server started");
 
 
-
+        /*
+        2 Prod + 1 Consumer
+         */
         ExecutorService executorService = Executors.newFixedThreadPool(3);
         executorService.execute(new Cleint_Prod(ms, server));
         executorService.execute(new Cleint_Prod(ms, server));

@@ -39,7 +39,7 @@ class Client {
             while (true) {
                 try {
                     nachricht = in.readUTF(); // auf die Antwort warten
-                } catch (EOFException|SocketException e) {
+                } catch (EOFException | SocketException e) {
                     break;
                 }
 

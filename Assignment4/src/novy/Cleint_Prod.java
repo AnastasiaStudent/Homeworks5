@@ -6,7 +6,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
 /**
- * Created by jm on 10/19/2014.
+ * Client where Mensch is produced
  */
 public class Cleint_Prod implements Runnable {
     Mensch ms;
@@ -25,8 +25,8 @@ public class Cleint_Prod implements Runnable {
     @Override public void run() {
         try {
             sr.produce(ms);
-            System.out.println("Mensch produced " + " current size of Server: "  + sr.size());
-        } catch (InterruptedException|RemoteException e) {
+            System.out.println("Mensch produced " + " current size of Server: " + sr.size());
+        } catch (InterruptedException | RemoteException e) {
             e.printStackTrace();
         }
     }

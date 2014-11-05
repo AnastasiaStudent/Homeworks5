@@ -22,22 +22,15 @@ public class QueryInit implements Serializable {
             oos.writeObject(this.sds);
             oos.flush();
             System.out.println("Datei gespeichert");
-        } catch (FileNotFoundException e) {
-
         } catch (IOException e) {
-
         }
-
     }
 
     private SDS SDSliefern() {
 
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filename))) {
             this.sds = (SDS) ois.readObject();
-        } catch (FileNotFoundException e) {
-        } catch (IOException e) {
-        } catch (ClassNotFoundException e) {
-        } catch (NullPointerException e) {
+        } catch (ClassNotFoundException | NullPointerException | IOException e) {
             System.out.println("Erste Anfrage!");
         }
 

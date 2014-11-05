@@ -4,6 +4,9 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.concurrent.LinkedBlockingQueue;
 
+/**
+ * Class which we use to implement the interface and store Mensch in Queue
+ */
 public class Server extends UnicastRemoteObject implements Prod_Con_Methods {
     Mensch ms;
     LinkedBlockingQueue<Mensch> lbq;
@@ -19,7 +22,6 @@ public class Server extends UnicastRemoteObject implements Prod_Con_Methods {
     }
 
     public Mensch consume() throws RemoteException, InterruptedException {
-
         return lbq.take();
     }
 

@@ -1,7 +1,7 @@
 package novy;
 
 /**
- * Created by jm on 10/28/2014.
+ * Mensch class is our produkt which produce and store
  */
 public class Mensch {
 
@@ -21,6 +21,9 @@ public class Mensch {
         this.name = name;
     }
 
+    /**
+     * @return Mensch was consumed
+     */
     @Override public String toString() {
         return "Mensch{" +
             "name='" + name + '\'' +
