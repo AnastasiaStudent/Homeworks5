@@ -10,7 +10,7 @@ public class QueryInit implements Serializable {
 
     public synchronized void speichern(String antwort) {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename))) {
-            this.sds = (SDS) SDSliefern();
+            this.sds = SDSliefern();
 
             if (antwort.equals("ja")) {
                 this.sds.ja++;

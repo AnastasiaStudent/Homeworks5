@@ -1,4 +1,4 @@
-package ver1;
+package ana1;
 
 import javax.jms.*;
 import javax.naming.Context;
@@ -88,10 +88,8 @@ public class General1 {
             (QueueConnectionFactory) ctx.lookup("ConnectionFactory");
         Queue queue1 = (Queue) ctx.lookup(DESTINATION1);
         Queue queue2 = (Queue) ctx.lookup(DESTINATION2);
-        connection = factory.createQueueConnection(USER,
-            PASSWORD);
-        session = connection.createQueueSession(false,
-            Session.AUTO_ACKNOWLEDGE);
+        connection = factory.createQueueConnection(USER, PASSWORD);
+        session = connection.createQueueSession(false, Session.AUTO_ACKNOWLEDGE);
         sender1 = session.createSender(queue1);
         sender2 = session.createSender(queue2);
         // Empf�nger erzeugen
@@ -122,7 +120,6 @@ public class General1 {
                 sender1.send(message);
                 System.out.println("an General2: " + message.getText());
                 sender1.close();
-
                 message.setText("Hallo Welt!");
                 sender2.setTimeToLive(10000);
                 sender2.send(message);
@@ -159,7 +156,6 @@ public class General1 {
                 System.out.println("Vom General3:" + Werte[2]);
             }
         }
-
         receiver1.close();
         receiver2.close();
         session.close();

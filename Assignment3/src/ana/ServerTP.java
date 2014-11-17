@@ -61,7 +61,7 @@ public class ServerTP {
                 System.out.println("Verbunden mit "
                     + socket.getInetAddress().getHostName() + ".");
           /*
-           * Als erstes wird dem Client mitgeteilt, dass er nun verbunden ist.
+           * Als erstes wird dem Sockets mitgeteilt, dass er nun verbunden ist.
     			 */
 
                 nachricht =
@@ -81,7 +81,7 @@ public class ServerTP {
                         break;
                     } else {
                         nachricht = "falsch";
-                        out.writeUTF(nachricht);// Antwort auf Client senden
+                        out.writeUTF(nachricht);// Antwort auf Sockets senden
                         out.flush();
                         System.out.println("Server: " + nachricht);
                     }
@@ -111,7 +111,7 @@ public class ServerTP {
                         break;
                     } else {
                         nachricht = "falsch";
-                        out.writeUTF(nachricht);// Antwort auf Client senden
+                        out.writeUTF(nachricht);// Antwort auf Sockets senden
                         out.flush();
                         System.out.println(
                             "Server an " + myconnection.getInetAddress() + ": " + nachricht);

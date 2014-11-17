@@ -1,6 +1,7 @@
 > Schreiben Sie ein verteiltes Programm zur Umsetzung des Produzenten-/Konsumentenproblems.
 > 
-> Der serverseitige Teil verwaltet einen Ringpuffer, in den Produzenten- und Konsumenten-Klientenprogramme ihre Produkte einstellen / entnehmen können. Klientenprogramme sollen außerdem beim Server anfragen können, wie viele Einträge gerade im Ringpuffer vorhanden sind.
+> Der serverseitige Teil verwaltet einen Ringpuffer, in den Produzenten- und Konsumenten-Klientenprogramme ihre Produkte einstellen / entnehmen können.
+> **Klientenprogramme sollen außerdem beim Server anfragen können, wie viele Einträge gerade** im Ringpuffer vorhanden sind.
 > 
 > Die Klientenprogramme (Produzenten und Konsumenten in beliebiger Zahl) erteilen ihre Aufträge an den Server über das Netzwerk.
 > 

@@ -1,4 +1,4 @@
-package ver1;
+package ana1;
 
 import javax.jms.*;
 import javax.naming.Context;
@@ -7,9 +7,7 @@ import javax.naming.NamingException;
 import java.util.Properties;
 
 
-public class GeneralTest
-
-{
+public class GeneralTest {
     private static final String DESTINATION1 = "queue/aufgabe6Queue1";
     private static final String DESTINATION2 = "queue/aufgabe6Queue2";
     private static final String DESTINATION3 = "queue/aufgabe6Queue3";
@@ -23,7 +21,6 @@ public class GeneralTest
     private Queue queue;
 
     public GeneralTest() {
-
 
     }
 

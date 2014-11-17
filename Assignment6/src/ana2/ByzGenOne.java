@@ -14,9 +14,7 @@ public class ByzGenOne {
         InetAddress lclhost;
         GenOne gentwo, genthree, genfour;
 
-        for (icounter = 0; icounter < 2; icounter++)
-
-        {
+        for (icounter = 0; icounter < 2; icounter++) {
             lclhost = InetAddress.getLocalHost();
             gentwo = new GenOne(lclhost);
             gentwo.setSendPort(9001);
@@ -60,21 +58,19 @@ class GenOne {
     InetAddress lclhost;
     int sendport, recport;
 
-    GenOne(InetAddress lclhost)
-
-    {
+    GenOne(InetAddress lclhost) {
         this.lclhost = lclhost;
     }
 
-    void setSendPort(int sendport) {
+    public void setSendPort(int sendport) {
         this.sendport = sendport;
     }
 
-    void setRecPort(int recport) {
+    public void setRecPort(int recport) {
         this.recport = recport;
     }
 
-    void sendData() throws Exception {
+    public void sendData() throws Exception {
         DatagramSocket ds;
         DatagramPacket dp;
         BufferedReader br;
@@ -95,7 +91,7 @@ class GenOne {
         ds.close();
     }
 
-    void recData() throws Exception {
+    public void recData() throws Exception {
         DatagramSocket ds;
         DatagramPacket dp;
         byte[] buf = new byte[256];
@@ -114,19 +110,12 @@ class GenOne {
 
         if (msgstr.length() == 9) {
             recctr++;
-
             recdata = Integer.parseInt(msgstr);
-
             dataarr[ctr++] = recdata / 1000000;
-
             recdata = recdata % 1000000;
-
             dataarr[ctr++] = recdata / 1000;
-
             recdata = recdata % 1000;
-
             dataarr[ctr++] = recdata;
-
             if (recctr == 3) {
                 maxval();
             }
@@ -138,30 +127,25 @@ class GenOne {
 
     }
 
-    void maxval() {
+    public void maxval() {
         int ctr1, ctr2, i, j;
         boolean gentwo = false, genthree = false, genfour = false;
-
         for (ctr1 = 0; ctr1 < 9; ctr1++) {
             i = 0;
             j = dataarr[ctr1];
-
             if (dataarr[ctr1] != 0) {
                 //System.out.println("found");
-
                 for (ctr2 = 0; ctr2 < 9; ctr2++) {
                     if (j == dataarr[ctr2]) {
                         i++;
                         dataarr[ctr2] = 0;
                     }
-
                     if (i == 2) {
                         finalarr[fnctr++] = j;
                     }
                 }
 
             }
-
 
             Arrays.sort(finalarr);
             System.out.println("Final Vector");
@@ -170,26 +154,17 @@ class GenOne {
                 System.out.println(finalarr[ctr1] + " ");
             }
 
-            for (ctr1 = 0; ctr1 < 3; ctr1++)
-
-            {
-                if (finalarr[ctr1] >= 200 && finalarr[ctr1] < 300)
-
-                {
+            for (ctr1 = 0; ctr1 < 3; ctr1++) {
+                if (finalarr[ctr1] >= 200 && finalarr[ctr1] < 300) {
                     System.out.println("General Number two is Loyal");
                     gentwo = true;
-
-                } else if (finalarr[ctr1] >= 300 && finalarr[ctr1] < 400)
-
-                {
+                } else if (finalarr[ctr1] >= 300 && finalarr[ctr1] < 400) {
                     System.out.println("General Number three is Loyal");
                     genthree = true;
-
                 } else if (finalarr[ctr1] >= 400 && finalarr[ctr1] < 500) {
                     System.out.println("General Number four is Loyal");
                     genfour = true;
                 }
-
             }
 
             if (gentwo == false) {
@@ -206,7 +181,6 @@ class GenOne {
 
         }
     }
-
 }
    
 	

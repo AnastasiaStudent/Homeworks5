@@ -42,14 +42,15 @@ public class ChatServerBind {
         //declaring a queue for this channel. If queue does not exist,
         //it will be created on the server.
         channel.queueDeclare("newQeueRMIJAVA", false, false, false, null);
+        ChatInterface client =null;
 
         while (true) {
             String msg = scan.nextLine();
             if ((chse.getName() != null) && (msg != null)) {
-                ChatInterface client = chse.getClient();
+                client = chse.getClient();
                 System.out.println(msg = "[" + chse.getName() + "] " + msg);
-                client.postMessage(msg);
             }
+            client.postMessage(msg);
         }
     }
 }

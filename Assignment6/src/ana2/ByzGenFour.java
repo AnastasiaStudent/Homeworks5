@@ -14,9 +14,7 @@ public class ByzGenFour {
         InetAddress lclhost;
         GenFour gentwo, genthree, genfour;
 
-        for (icounter = 0; icounter < 2; icounter++)
-
-        {
+        for (icounter = 0; icounter < 2; icounter++) {
             lclhost = InetAddress.getLocalHost();
             gentwo = new GenFour(lclhost);
             gentwo.setSendPort(9006);
@@ -59,21 +57,19 @@ class GenFour {
     InetAddress lclhost;
     int sendport, recport;
 
-    GenFour(InetAddress lclhost) {
+    public GenFour(InetAddress lclhost) {
         this.lclhost = lclhost;
     }
 
-    void setSendPort(int sendport) {
+    public void setSendPort(int sendport) {
         this.sendport = sendport;
     }
 
-    void setRecPort(int recport) {
+    public void setRecPort(int recport) {
         this.recport = recport;
     }
 
-    void sendData() throws Exception
-
-    {
+    public void sendData() throws Exception {
         DatagramSocket ds;
         DatagramPacket dp;
         BufferedReader br;
@@ -93,9 +89,7 @@ class GenFour {
         ds.close();
     }
 
-    void recData() throws Exception
-
-    {
+    public void recData() throws Exception {
         DatagramSocket ds;
         DatagramPacket dp;
         byte[] buf = new byte[256];
@@ -109,19 +103,12 @@ class GenFour {
 
         if (msgstr.length() == 9) {
             recctr++;
-
             recdata = Integer.parseInt(msgstr);
-
             dataarr[ctr++] = recdata / 1000000;
-
             recdata = recdata % 1000000;
-
             dataarr[ctr++] = recdata / 1000;
-
             recdata = recdata % 1000;
-
             dataarr[ctr++] = recdata;
-
             if (recctr == 3) {
                 maxval();
             }
@@ -133,9 +120,7 @@ class GenFour {
         }
     }
 
-    void maxval()
-
-    {
+    public void maxval() {
         int ctr1, ctr2, i, j;
         boolean gentwo = false, genthree = false, genfour = false;
 
@@ -188,5 +173,4 @@ class GenFour {
             System.out.println("General Number Four is Not Loyal");
         }
     }
-
 } 

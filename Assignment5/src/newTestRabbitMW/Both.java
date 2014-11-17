@@ -30,7 +30,7 @@ public class Both {
         System.out.println("You have connected to the chat room");
         System.out.println("Insert your name");
         String name = sc.next();
-        System.out.println("Now, you can chat");
+        System.out.println("Now, - " + name + " - you can chat");
 
         /*
         Part of consumer

@@ -26,7 +26,7 @@ public class Main {
             String message = sc.next();
             producer.sendMessage(message);
 
-            sd.submit(consumer);
+            //            sd.submit(consumer);
 
         }
     }

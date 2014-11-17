@@ -23,3 +23,4 @@ bin/
 .project
 .classpath
 .metadata
+/umfrageErgebnisse.txt
